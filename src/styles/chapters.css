@@ -33,10 +33,10 @@
 .cover-title {
   margin: clamp(18px, 2.6vw, 28px) 0 clamp(26px, 3.6vw, 38px);
   font-family: var(--font-display);
-  font-size: clamp(4.1rem, 9.3vw, 8.6rem);
+  font-size: clamp(3.8rem, 8.6vw, 7.4rem);
   font-weight: 400;
   letter-spacing: -0.045em;
-  line-height: 0.77;
+  line-height: 0.79;
 }
 
 .cover-title span {
@@ -840,17 +840,6 @@
 /* ═══════════════════════════════════════════════════
    03 — The Chaos Archive
    ═══════════════════════════════════════════════════ */
-
-.chaos-stickers {
-  position: absolute;
-  top: clamp(46px, 7vw, 84px);
-  right: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.55rem;
-  max-width: 310px;
-}
 
 .scrap-section {
   margin-top: clamp(50px, 7vw, 82px);
@@ -1675,16 +1664,6 @@
   position: relative;
 }
 
-.appreciation-sprig {
-  position: absolute;
-  top: 4px;
-  right: 2%;
-  width: clamp(80px, 10vw, 128px);
-  opacity: 0.42;
-  transform: rotate(7deg);
-  pointer-events: none;
-}
-
 .appreciation-empty {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -2204,6 +2183,12 @@
   opacity: 0.4;
 }
 
+.track-row__play--static {
+  border-style: dashed;
+  color: var(--ink-faint);
+  opacity: 0.55;
+}
+
 .track-row__number {
   color: var(--ink-faint);
   font-family: var(--font-display);
@@ -2574,10 +2559,7 @@
   color: var(--ink-faint);
   font-family: var(--font-hand);
   font-size: 1.28rem;
-}
-
-.letter-modal .content-hint {
-  margin-top: 0.8rem;
+  text-align: right;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -3144,7 +3126,7 @@
 
 @media (max-width: 1100px) {
   .cover-title {
-    font-size: clamp(3.8rem, 8.8vw, 7rem);
+    font-size: clamp(3.6rem, 8.4vw, 6.6rem);
   }
 
   .cover-collage {
@@ -3181,13 +3163,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.9rem;
-  }
-
-  .chaos-stickers {
-    position: static;
-    justify-content: flex-start;
-    max-width: none;
-    margin-top: 1rem;
   }
 
   .timeline-empty,

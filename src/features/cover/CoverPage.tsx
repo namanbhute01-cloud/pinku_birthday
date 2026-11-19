@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { ArchiveImage } from "../../components/ArchiveImage";
+import { HeartDoodle, PaperClip } from "../../components/Decorations";
 import { BotanicalSprig, InkStar } from "../../components/Ornaments";
 import { Placeholder } from "../../components/Placeholder";
 import { Sticker } from "../../components/Sticker";
@@ -104,6 +105,7 @@ export function CoverPage() {
             <span className="cover-dedication__sign hand">
               — {profile.coverDedicationSignoff || profile.nickname}
             </span>
+            <HeartDoodle className="cover-dedication__heart" />
             <WashiTape className="cover-dedication__tape" tone="olive" />
           </div>
 
@@ -116,6 +118,13 @@ export function CoverPage() {
           <Sticker className="cover-collage__sticker" tone="burgundy" rotate={-7}>
             keep forever
           </Sticker>
+          <Sticker
+            className="cover-collage__sticker cover-collage__sticker--right"
+            tone="olive"
+            rotate={5}
+          >
+            one of one
+          </Sticker>
 
           <InkStar className="cover-collage__star" />
           <BotanicalSprig className="cover-collage__botanical" />
@@ -125,6 +134,10 @@ export function CoverPage() {
       <section className="contents" id="contents" aria-labelledby="contents-heading">
         <div className="contents__sheet">
           <WashiTape className="contents__tape" tone="brass" />
+          <PaperClip className="contents__clip" rotate={8} />
+          <Sticker className="contents__sticker" tone="olive" rotate={4}>
+            read in any order
+          </Sticker>
           <span className="contents__stitch" aria-hidden="true" />
 
           <div className="contents__head">

@@ -4,6 +4,9 @@ import { ArrowUpRight, Mail } from "lucide-react";
 import { PageHeader } from "../../components/PageHeader";
 import { EmptyState } from "../../components/EmptyState";
 import { Modal } from "../../components/Modal";
+import { ArrowDoodle, StickerCluster } from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { InkStar } from "../../components/Ornaments";
 import { Placeholder } from "../../components/Placeholder";
 import { letters } from "../../data/letters";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
@@ -29,6 +32,17 @@ export function LettersPage({ chapter }: ChapterPageProps) {
         eyebrow="Choose with care"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="burgundy" rotate={-6}>
+              open me
+            </Sticker>
+            <Sticker tone="olive" rotate={3}>
+              sealed
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       >
         <div className="letters-intro">
           <Mail size={18} strokeWidth={1.3} aria-hidden="true" />
@@ -71,10 +85,26 @@ export function LettersPage({ chapter }: ChapterPageProps) {
                       <ArrowUpRight size={14} strokeWidth={1.7} aria-hidden="true" />
                     </span>
                   </span>
+                  {index === 0 ? (
+                    <Sticker
+                      className="letter-envelope__sticker"
+                      tone="brass"
+                      rotate={4}
+                    >
+                      no peeking
+                    </Sticker>
+                  ) : null}
                 </button>
               </li>
             ))}
           </ul>
+
+          {letters.length > 0 ? (
+            <p className="letters-footnote" aria-hidden="true">
+              <ArrowDoodle className="letters-footnote__arrow" />
+              open in any order
+            </p>
+          ) : null}
 
           {!hasAnyMessage ? (
             <p className="content-hint content-hint--center">
@@ -123,12 +153,8 @@ export function LettersPage({ chapter }: ChapterPageProps) {
               )}
               <p className="letter-modal__signoff">
                 {selectedLetter.message
-                  ? "For whenever you need it."
+                  ? "— by your cuttu bhai"
                   : "Your words for this envelope will appear here."}
-              </p>
-              <p className="content-hint">
-                <span>Edit this envelope in</span>
-                <code>src/data/letters.ts</code>
               </p>
             </div>
           </motion.div>

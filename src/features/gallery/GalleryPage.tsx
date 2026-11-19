@@ -4,6 +4,9 @@ import { PageHeader } from "../../components/PageHeader";
 import { EmptyState } from "../../components/EmptyState";
 import { Lightbox } from "../../components/Lightbox";
 import { Polaroid } from "../../components/Polaroid";
+import { PaperClip, StickerCluster } from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { InkStar } from "../../components/Ornaments";
 import { WashiTape } from "../../components/WashiTape";
 import { photoMemories } from "../../data/memories";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
@@ -49,6 +52,17 @@ export function GalleryPage({ chapter }: ChapterPageProps) {
         eyebrow="Photographs & stories"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="burgundy" rotate={-5}>
+              say cheese
+            </Sticker>
+            <Sticker tone="brass" rotate={3}>
+              keep this one
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       >
         {photoMemories.length > 0 ? (
           <p className="page-header__aside">
@@ -90,6 +104,7 @@ export function GalleryPage({ chapter }: ChapterPageProps) {
       ) : (
         <>
           <div className="gallery-toolbar">
+            <PaperClip className="gallery-toolbar__clip" rotate={9} />
             <div className="gallery-filters" role="group" aria-label="Filter photographs">
               <span className="gallery-filters__label">
                 <SlidersHorizontal size={14} strokeWidth={1.6} aria-hidden="true" />
@@ -127,6 +142,12 @@ export function GalleryPage({ chapter }: ChapterPageProps) {
           </div>
 
           <div className="polaroid-wall">
+            <Sticker className="polaroid-wall__sticker" tone="brass" rotate={-4}>
+              flashback
+            </Sticker>
+            <span className="gallery-wall__note" aria-hidden="true">
+              the wall
+            </span>
             {visibleMemories.map((memory, index) => (
               <Polaroid
                 key={memory.id}

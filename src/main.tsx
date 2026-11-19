@@ -16,6 +16,7 @@ import "./styles/theme.css";
 import "./styles/global.css";
 import "./styles/scrapbook.css";
 import "./styles/chapters.css";
+import "./styles/decorations.css";
 import "./styles/intro.css";
 import "./styles/animations.css";
 import "./styles/page-turn.css";

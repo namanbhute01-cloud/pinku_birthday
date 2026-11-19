@@ -7,6 +7,8 @@ interface PageHeaderProps {
   title: string;
   deck?: string;
   children?: ReactNode;
+  /** Non-essential stickers, tape and doodles in the outer margin. */
+  decor?: ReactNode;
   className?: string;
 }
 
@@ -17,6 +19,7 @@ export function PageHeader({
   title,
   deck,
   children,
+  decor,
   className,
 }: PageHeaderProps) {
   return (
@@ -30,6 +33,11 @@ export function PageHeader({
         <h1>{title}</h1>
         {deck ? <p className="page-header__deck">{deck}</p> : null}
       </div>
+      {decor ? (
+        <div className="page-header__decor" aria-hidden="true">
+          {decor}
+        </div>
+      ) : null}
       {children}
     </header>
   );

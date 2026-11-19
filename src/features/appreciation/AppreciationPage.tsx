@@ -3,7 +3,9 @@ import { EmptyState } from "../../components/EmptyState";
 import { PaperSheet } from "../../components/PaperSheet";
 import { WashiTape } from "../../components/WashiTape";
 import { Placeholder } from "../../components/Placeholder";
-import { BotanicalSprig } from "../../components/Ornaments";
+import { StickerCluster } from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { BotanicalSprig, InkStar } from "../../components/Ornaments";
 import { appreciationNotes } from "../../data/appreciation";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
 
@@ -18,9 +20,19 @@ export function AppreciationPage({ chapter }: ChapterPageProps) {
         eyebrow="Read slowly"
         title={chapter.title}
         deck={chapter.deck}
-      >
-        <BotanicalSprig className="appreciation-sprig" />
-      </PageHeader>
+        decor={
+          <StickerCluster>
+            <BotanicalSprig className="decor-botanical" />
+            <Sticker tone="olive" rotate={-4}>
+              read slowly
+            </Sticker>
+            <Sticker tone="paper" rotate={3}>
+              for you
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
+      />
 
       {appreciationNotes.length === 0 ? (
         <div className="appreciation-empty">
@@ -82,6 +94,12 @@ export function AppreciationPage({ chapter }: ChapterPageProps) {
               )}
             </PaperSheet>
           ))}
+          <div className="note-stack__end" aria-hidden="true">
+            <Sticker tone="olive" rotate={-3}>
+              a few of many
+            </Sticker>
+            <InkStar />
+          </div>
         </div>
       )}
     </div>

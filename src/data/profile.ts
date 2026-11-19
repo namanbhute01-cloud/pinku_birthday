@@ -8,20 +8,20 @@ import type { Profile } from "../types/content";
  * photograph is already wired to the supplied portrait.
  */
 export const profile: Profile = {
-  name: "Ruchita",
+  name: "Ruchuu",
   nickname: "Pinku",
   pronouns: "she/her",
   birthdayMilestone: 20,
 
   // Revealed after the wax seal on the opening envelope is opened.
   introMessage:
-    "Dummy welcome message. Replace this paragraph with the real invitation when you are ready. It is only here to preview how the opened envelope will read.",
+    "HII  to my dear lady . wish you  the happiest..!!HAPPIESTTT!! BIRTHDAY...BROSKII hop ....in the surprise is waiting around😊️🤪️.",
 
   // The cover looks complete without these. Add your own words when ready.
-  coverSubtitle: "Dummy subtitle — replace this line with your own dedication.",
+  coverSubtitle: "To my dear lady.",
   coverDedication:
-    "Dummy cover note. Replace this short paragraph with the real dedication for the inside cover. This text is placeholder scaffolding only.",
-  coverDedicationSignoff: "Dummy sign-off",
+    "HEYYY pinkuuuu 🤭️ the surprise awaits for uh on this birthday..  now much of a surprise  just enough to  to bring up a  sweet smile at ur khubsurat mukhda.(😆️😆️🤣️)",
+  coverDedicationSignoff: "by your cuttu bhai!!😁️",
 
   // Cover photograph from the supplied set.
   coverPhoto: "/assets/photos/photo-09.jpg",

@@ -48,7 +48,7 @@
   --font-mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
 
   /* Geometry */
-  --content-width: 1180px;
+  --content-width: 1080px;
   --header-height: 74px;
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-paper: cubic-bezier(0.33, 1, 0.68, 1);

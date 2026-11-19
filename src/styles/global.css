@@ -447,7 +447,7 @@ fieldset {
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  max-width: 1380px;
+  max-width: var(--content-width);
   min-height: var(--header-height);
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 48px);
@@ -705,7 +705,7 @@ fieldset {
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: 1rem;
   width: 100%;
-  max-width: 1280px;
+  max-width: var(--content-width);
   margin: clamp(55px, 8vw, 100px) auto 0;
   padding: 0 clamp(18px, 5vw, 48px);
   border-top: 1px solid var(--rule);
@@ -1089,7 +1089,7 @@ fieldset {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem 2rem;
-  max-width: 1280px;
+  max-width: var(--content-width);
   margin: 0 auto;
   color: var(--ink-faint);
   font-size: 0.58rem;
@@ -1161,10 +1161,10 @@ fieldset {
 .page-header h1 {
   max-width: 860px;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7.4vw, 6.3rem);
+  font-size: clamp(2.9rem, 6.8vw, 5.7rem);
   font-weight: 500;
   letter-spacing: -0.025em;
-  line-height: 0.88;
+  line-height: 0.9;
 }
 
 .page-header__deck {

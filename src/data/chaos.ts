@@ -9,44 +9,39 @@ import type {
 /**
  * The Chaos Archive.
  *
- * PREVIEW CONTENT: every item below is dummy copy, included so the sections
- * render with something in them. Replace the "Dummy" values with your own
- * moments, quotes, captions, awards and quiz answers.
+ * The moments, quotes, evidence and awards that belong to Pinku. Edit anything,
+ * anytime — especially the quiz answers if the lore changes.
  */
 export const funnyMoments: FunMoment[] = [
   {
     id: "moment-1",
-    title: "Dummy moment one",
-    body: "Dummy story for this moment. Replace it with the real one — the setup, the chaos, and the line that still gets quoted.",
+    title: " dumb moments",
+    body: "🤣️moments doesnt need to be dumnb when we both are  dumb in real😭️🤣️.. every moment is laughter and memorable.",
   },
   {
     id: "moment-2",
-    title: "Dummy moment two",
-    body: "Dummy story text. Add the actual memory here, then delete this placeholder. It can be one line or a whole paragraph.",
+    title: "cute moments",
+    body: "Like when somehow ,sometime we turn out soo emotional about each other🤣️(which lasts for 2 sec then we start quarreling 🤣️as if we are hardcore enemies🤣️) .",
   },
   {
     id: "moment-3",
-    title: "Dummy moment three",
-    body: "Dummy story for the third card. Keep it here only long enough to check the layout, then swap in the real version.",
+    title: "memorable moments",
+    body: "Every moment with you for me memorable  no moments such as  we can consider which arent fun!! every moment is funn and filled wiht joy and laughter and 😊️.. such relief.. .",
   },
 ];
 
 export const iconicQuotes: Quote[] = [
   {
     id: "quote-1",
-    text: "Dummy quote one. Replace this with the exact words.",
-    context: "Dummy context — where it was said.",
+    text: "Calling me gay..!!!",
+    context: "SAYS EACH AND EVERYTIME!!🔪️.",
   },
   {
     id: "quote-2",
-    text: "Dummy quote two. Replace this with the line that gets repeated.",
-    context: "Dummy context — who keeps saying it.",
+    text: "FRUSTRATED PINKU",
+    context: "IM TOTTALLYY DONE WITH THE PEOPLE!!.",
   },
-  {
-    id: "quote-3",
-    text: "Dummy quote three. Replace this with something only you two would know.",
-    context: "Dummy context — the story behind it.",
-  },
+ 
 ];
 
 export const screenshots: Screenshot[] = [
@@ -54,61 +49,66 @@ export const screenshots: Screenshot[] = [
     id: "shot-1",
     image: "/assets/photos/photo-01.jpg",
     alt: "A young woman in a striped shirt taking a mirror selfie with her phone.",
-    caption: "Dummy exhibit one — replace with a screenshot or photograph.",
+    caption: "HEHE those  snaps of her aftr buying new clothes😂️.",
   },
   {
     id: "shot-2",
     image: "/assets/photos/photo-02.jpg",
     alt: "A young woman in a white off-shoulder top taking a mirror selfie with her phone.",
-    caption: "Dummy exhibit two — replace with a screenshot or photograph.",
+    caption: "THE slayy gurl.",
   },
 ];
 
 export const awards: Award[] = [
   {
     id: "award-1",
-    title: "Dummy award one",
-    recipient: "Dummy recipient",
-    reason: "Dummy reason. Replace this with the real, entirely unserious citation.",
+    title: "patience award",
+    recipient: "goes to uh ",
+    reason: "for listening to all my bakwas,nonsence.. talks, and behaviour.",
   },
   {
     id: "award-2",
-    title: "Dummy award two",
-    recipient: "Dummy recipient",
-    reason: "Dummy reason for the second award. Add the real story behind it later.",
+    title: "best person",
+    recipient: "OBV YOU",
+    reason: "for being my back and holding and teaching me most of the things .",
   },
   {
     id: "award-3",
-    title: "Dummy award three",
-    recipient: "Dummy recipient",
-    reason: "Dummy reason for the third award. This is placeholder copy only.",
+    title: "DUMB AWARD",
+    recipient: "you",
+    reason: "for being mean and dumb sometimes.",
   },
 ];
 
 /**
  * Optional quiz. Each question needs at least two options and the zero-based
- * index of the correct one. The questions below are preview-only dummies.
+ * index of the correct one.
  */
 export const quizQuestions: QuizQuestion[] = [
   {
     id: "quiz-1",
-    question: "Dummy question one. Replace this with a real question.",
-    options: ["Dummy option A", "Dummy option B", "Dummy option C"],
+    question: "What happens two seconds after we get emotional?",
+    options: [
+      "We start quarrelling again",
+      "We start crying properly",
+      "We forget why we were emotional",
+    ],
     answerIndex: 0,
-    explanation: "Dummy explanation. Replace it with the note you want to show after answering.",
+    explanation: "Two seconds of softness, then the hardcore-enemies era returns. 🤣",
   },
   {
     id: "quiz-2",
-    question: "Dummy question two. Replace this with another question.",
-    options: ["Dummy option A", "Dummy option B"],
-    answerIndex: 1,
-    explanation: "Dummy explanation for the second question. Add the real one when you edit the quiz.",
+    question: "What does Pinku say every single time?",
+    options: ["Calling me gay..!!!", "I'm hungry", "Let's study"],
+    answerIndex: 0,
+    explanation: "Says each and every time. 🔪",
   },
   {
     id: "quiz-3",
-    question: "Dummy question three. Replace this with the final question.",
-    options: ["Dummy option A", "Dummy option B", "Dummy option C"],
+    question: "Which award is Pinku actually winning?",
+    options: ["Patience award", "Dumb award", "Both, obviously"],
     answerIndex: 2,
-    explanation: "Dummy explanation for the third question. This text exists only to preview the result state.",
+    explanation:
+      "Patience for listening to all my bakwas, and dumb award for being mean sometimes. Both deserved.",
   },
 ];

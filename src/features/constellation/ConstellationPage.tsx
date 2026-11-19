@@ -2,6 +2,9 @@ import { useMemo, useState } from "react";
 import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { PageHeader } from "../../components/PageHeader";
 import { Lightbox } from "../../components/Lightbox";
+import { StickerCluster } from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { InkStar } from "../../components/Ornaments";
 import { photoMemories } from "../../data/memories";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
 
@@ -49,6 +52,17 @@ export function ConstellationPage({ chapter }: ChapterPageProps) {
         eyebrow="A second way to see"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="brass" rotate={-4}>
+              look up
+            </Sticker>
+            <Sticker tone="paper" rotate={4}>
+              after dark
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       />
 
       <section className="constellation-panel" aria-labelledby="constellation-heading">
@@ -67,6 +81,9 @@ export function ConstellationPage({ chapter }: ChapterPageProps) {
         </div>
 
         <div className="star-map" role="group" aria-label="Memory constellation">
+          <span className="star-map__compass" aria-hidden="true">
+            N
+          </span>
           <div className="star-map__sky" aria-hidden="true">
             {SKY_STARS.map((star, index) => (
               <span

@@ -11,40 +11,40 @@ import type { TimelineEntry } from "../types/content";
 export const timelineEntries: TimelineEntry[] = [
   {
     id: "timeline-01",
-    date: "Month YYYY",
-    title: "Dummy first entry",
+    date: "23 FEBRUARY 2026",
+    title: "FOXIEEEEE",
     description:
-      "Dummy timeline text. Replace this entry with the real date, place and story. The photograph can stay, or you can point the image field at a different file.",
+      "HEHE   just  pinku showcasing her intellectuality similar a foxie😎️.",
     image: "/assets/photos/photo-03.jpg",
     imageAlt:
       "A young woman outdoors wearing animal ears and a blue patterned tie over a light shirt.",
   },
   {
     id: "timeline-02",
-    date: "Month YYYY",
-    title: "Dummy second entry",
+    date: "2025",
+    title: "YELLOWEE FLOWER",
     description:
-      "Dummy timeline text for the second milestone. Use this space for the real memory and keep the copy as long or as short as you like.",
+      "Ma favourite 😁️ ..  glowing like a birght yellow dandelion 😊️",
     image: "/assets/photos/photo-08.jpg",
     imageAlt:
       "A close-up portrait of a young woman in a yellow top, with one hand near her ear.",
   },
   {
     id: "timeline-03",
-    date: "Month YYYY",
-    title: "Dummy third entry",
+    date: "Aug 2026",
+    title: "FORMAL QUEEN",
     description:
-      "Dummy timeline text. This paragraph is only here to show how a slightly longer entry wraps beside the date and the photograph.",
+      "Nothing more  you need where in you can glow in the traditionals as well and look fully proffesional while uh need ...",
     image: "/assets/photos/photo-01.jpg",
     imageAlt:
       "A young woman in a striped shirt taking a mirror selfie with her phone.",
   },
   {
     id: "timeline-04",
-    date: "Month YYYY",
-    title: "Dummy fourth entry",
+    date: "2026",
+    title: "SASSY LOOK",
     description:
-      "Dummy timeline text for the most recent placeholder. Replace it with the real ending of this chapter, or add more entries above it.",
+      "WHAT more can uh ask where in you can switch up as a  fully formal look and then .. changeup and be a full   saassyy gurl!!..(slaying in every outfit uh wear)🤭️🤣️.",
     image: "/assets/photos/photo-02.jpg",
     imageAlt:
       "A young woman in a white off-shoulder top taking a mirror selfie with her phone.",

@@ -10,6 +10,8 @@ import { PaperSheet } from "../../components/PaperSheet";
 import { SectionTitle } from "../../components/SectionTitle";
 import { WashiTape } from "../../components/WashiTape";
 import { Sticker } from "../../components/Sticker";
+import { StickerCluster } from "../../components/Decorations";
+import { InkStar } from "../../components/Ornaments";
 import { Placeholder } from "../../components/Placeholder";
 import { ArchiveImage } from "../../components/ArchiveImage";
 import { Quiz } from "../../components/Quiz";
@@ -38,19 +40,21 @@ export function ChaosPage({ chapter }: ChapterPageProps) {
         eyebrow="Handle with laughter"
         title={chapter.title}
         deck={chapter.deck}
-      >
-        <div className="chaos-stickers" aria-hidden="true">
-          <Sticker tone="brass" rotate={-6}>
-            chaos dept.
-          </Sticker>
-          <Sticker tone="burgundy" rotate={4}>
-            est. 20
-          </Sticker>
-          <Sticker tone="olive" rotate={-2}>
-            no seriousness
-          </Sticker>
-        </div>
-      </PageHeader>
+        decor={
+          <StickerCluster>
+            <Sticker tone="brass" rotate={-6}>
+              chaos dept.
+            </Sticker>
+            <Sticker tone="burgundy" rotate={4}>
+              est. 20
+            </Sticker>
+            <Sticker tone="olive" rotate={-2}>
+              no seriousness
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
+      />
 
       <section className="scrap-section" aria-labelledby="chaos-moments-heading">
         <SectionTitle index="I" title="The wall of chaos" id="chaos-moments-heading">
@@ -114,6 +118,10 @@ export function ChaosPage({ chapter }: ChapterPageProps) {
 
         {iconicQuotes.length > 0 ? (
           <div className="quote-grid">
+            <Sticker className="quote-grid__sticker" tone="burgundy" rotate={5}>
+              no context
+            </Sticker>
+            <WashiTape className="quote-grid__tape" tone="olive" />
             {iconicQuotes.map((quote) => (
               <figure className="quote-slip" key={quote.id}>
                 <QuoteIcon size={19} strokeWidth={1.3} aria-hidden="true" />
@@ -229,7 +237,7 @@ export function ChaosPage({ chapter }: ChapterPageProps) {
 
       <section className="scrap-section scrap-section--quiz" aria-labelledby="chaos-quiz-heading">
         <SectionTitle index="V" title="The completely unscientific quiz" id="chaos-quiz-heading">
-          Optional. Entirely yours. Add questions and answers to the archive data.
+          A very serious investigation into Pinku lore. Choose carefully.
         </SectionTitle>
 
         {quizQuestions.length > 0 ? (

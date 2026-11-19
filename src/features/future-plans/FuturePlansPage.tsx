@@ -8,6 +8,13 @@ import {
 import { PageHeader } from "../../components/PageHeader";
 import { EmptyState } from "../../components/EmptyState";
 import { Placeholder } from "../../components/Placeholder";
+import {
+  HeartDoodle,
+  PaperClip,
+  StickerCluster,
+} from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { InkStar } from "../../components/Ornaments";
 import { WashiTape } from "../../components/WashiTape";
 import { futurePlans } from "../../data/futurePlans";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
@@ -31,6 +38,17 @@ export function FuturePlansPage({ chapter }: ChapterPageProps) {
         eyebrow="The next page is blank"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="brass" rotate={-4}>
+              someday
+            </Sticker>
+            <Sticker tone="paper" rotate={3}>
+              not yet
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       />
 
       <div className="future-layout">
@@ -84,11 +102,18 @@ export function FuturePlansPage({ chapter }: ChapterPageProps) {
 
           <p className="future-footnote hand">
             the rest of the story is still unwritten
+            <HeartDoodle className="future-content__heart" />
           </p>
         </div>
 
         <aside className="future-collage" aria-hidden="true">
+          <Sticker className="future-collage__sticker" tone="olive" rotate={-7}>
+            someday
+          </Sticker>
           <div className="future-postcard">
+            <Sticker className="future-postcard__sticker" tone="paper" rotate={-4}>
+              one day
+            </Sticker>
             <span className="future-postcard__stamp">
               <span>XX</span>
             </span>
@@ -112,6 +137,7 @@ export function FuturePlansPage({ chapter }: ChapterPageProps) {
           </div>
 
           <div className="future-map">
+            <PaperClip className="future-map__clip" rotate={7} />
             <Map size={20} strokeWidth={1.1} />
             <svg viewBox="0 0 220 100" fill="none">
               <path

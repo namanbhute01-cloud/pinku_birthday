@@ -2,14 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import {
   AlertCircle,
   Disc3,
+  Music2,
   Pause,
   Play,
   Volume2,
   VolumeX,
 } from "lucide-react";
 import { PageHeader } from "../../components/PageHeader";
+import { StickerCluster } from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { InkStar } from "../../components/Ornaments";
 import { Placeholder } from "../../components/Placeholder";
 import { VoiceNote } from "../../components/VoiceNote";
+import { WashiTape } from "../../components/WashiTape";
 import { playlist, soundtrackVoiceMessage } from "../../data/playlist";
 import { profile } from "../../data/profile";
 import { formatAudioTime } from "../../utils/format";
@@ -20,8 +25,9 @@ import type { PlaylistTrack } from "../../types/content";
 /** Chapter 07 — a vintage record player and a data-driven track list. */
 export function SoundtrackPage({ chapter }: ChapterPageProps) {
   const firstPlayable = playlist.find((track) => track.audioSrc);
+  const hasPlayableTrack = Boolean(firstPlayable);
   const [currentTrackId, setCurrentTrackId] = useState<string | null>(
-    firstPlayable?.id ?? null,
+    firstPlayable?.id ?? playlist[0]?.id ?? null,
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -63,7 +69,7 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
     try {
       await audio.play();
     } catch {
-      setError("This track could not be played. Check that the audio file path is correct.");
+      setError("This track couldn’t be played. Try another song.");
     }
   };
 
@@ -100,10 +106,24 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
         eyebrow="Press play when ready"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="burgundy" rotate={-4}>
+              side A
+            </Sticker>
+            <Sticker tone="brass" rotate={3}>
+              on repeat
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       />
 
       <div className="soundtrack-layout">
         <section className="turntable-card" aria-label="Record player">
+          <Sticker className="turntable-card__sticker" tone="paper" rotate={3}>
+            now spinning
+          </Sticker>
           <div className={cx("turntable", isPlaying && "is-playing")}>
             <div className="turntable__platter">
               <div className="vinyl">
@@ -131,7 +151,9 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
 
           <div className="turntable-info">
             <div>
-              <p className="eyebrow">Now playing</p>
+              <p className="eyebrow">
+                {hasPlayableTrack ? "Now playing" : "On the record"}
+              </p>
               <h2>
                 {currentTrack?.title ? (
                   currentTrack.title
@@ -151,74 +173,80 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
                 )}
               </p>
             </div>
-            <button
-              type="button"
-              className="turntable-info__play"
-              onClick={() => void toggleCurrentTrack()}
-              disabled={!currentTrack?.audioSrc}
-              aria-label={
-                !currentTrack?.audioSrc
-                  ? "No playable track selected"
-                  : isPlaying
-                    ? "Pause current track"
-                    : "Play current track"
-              }
-            >
-              {isPlaying ? (
-                <Pause size={22} fill="currentColor" aria-hidden="true" />
-              ) : (
-                <Play size={22} fill="currentColor" aria-hidden="true" />
-              )}
-            </button>
+            {hasPlayableTrack ? (
+              <button
+                type="button"
+                className="turntable-info__play"
+                onClick={() => void toggleCurrentTrack()}
+                disabled={!currentTrack?.audioSrc}
+                aria-label={
+                  !currentTrack?.audioSrc
+                    ? "No playable track selected"
+                    : isPlaying
+                      ? "Pause current track"
+                      : "Play current track"
+                }
+              >
+                {isPlaying ? (
+                  <Pause size={22} fill="currentColor" aria-hidden="true" />
+                ) : (
+                  <Play size={22} fill="currentColor" aria-hidden="true" />
+                )}
+              </button>
+            ) : null}
           </div>
 
-          <div className="turntable-progress">
-            <span>{formatAudioTime(currentTime)}</span>
-            <input
-              type="range"
-              min={0}
-              max={duration || 0}
-              step={0.1}
-              value={Math.min(currentTime, duration || 0)}
-              onChange={(event) => seekTo(Number(event.target.value))}
-              disabled={!currentTrack?.audioSrc}
-              aria-label="Seek through the current track"
-            />
-            <span>{formatAudioTime(duration)}</span>
-          </div>
+          {hasPlayableTrack ? (
+            <>
+              <div className="turntable-progress">
+                <span>{formatAudioTime(currentTime)}</span>
+                <input
+                  type="range"
+                  min={0}
+                  max={duration || 0}
+                  step={0.1}
+                  value={Math.min(currentTime, duration || 0)}
+                  onChange={(event) => seekTo(Number(event.target.value))}
+                  disabled={!currentTrack?.audioSrc}
+                  aria-label="Seek through the current track"
+                />
+                <span>{formatAudioTime(duration)}</span>
+              </div>
 
-          <div className="volume-control">
-            <button
-              type="button"
-              className="icon-button icon-button--small"
-              onClick={() => setMuted((value) => !value)}
-              aria-label={muted ? "Unmute volume" : "Mute volume"}
-              disabled={!currentTrack?.audioSrc}
-            >
-              {muted ? (
-                <VolumeX size={16} strokeWidth={1.7} aria-hidden="true" />
-              ) : (
-                <Volume2 size={16} strokeWidth={1.7} aria-hidden="true" />
-              )}
-            </button>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={muted ? 0 : volume}
-              onChange={(event) => {
-                const nextVolume = Number(event.target.value);
-                setVolume(nextVolume);
-                setMuted(nextVolume === 0);
-              }}
-              disabled={!currentTrack?.audioSrc}
-              aria-label="Volume"
-            />
-            <span className="volume-control__value">
-              {Math.round((muted ? 0 : volume) * 100)}%
-            </span>
-          </div>
+              <div className="volume-control">
+                <button
+                  type="button"
+                  className="icon-button icon-button--small"
+                  onClick={() => setMuted((value) => !value)}
+                  aria-label={muted ? "Unmute volume" : "Mute volume"}
+                  disabled={!currentTrack?.audioSrc}
+                >
+                  {muted ? (
+                    <VolumeX size={16} strokeWidth={1.7} aria-hidden="true" />
+                  ) : (
+                    <Volume2 size={16} strokeWidth={1.7} aria-hidden="true" />
+                  )}
+                </button>
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={muted ? 0 : volume}
+                  onChange={(event) => {
+                    const nextVolume = Number(event.target.value);
+                    setVolume(nextVolume);
+                    setMuted(nextVolume === 0);
+                  }}
+                  disabled={!currentTrack?.audioSrc}
+                  aria-label="Volume"
+                />
+                <span className="volume-control__value">
+                  {Math.round((muted ? 0 : volume) * 100)}%
+                </span>
+              </div>
+            </>
+          ) : null}
 
           <audio
             ref={audioRef}
@@ -235,11 +263,7 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
               setDuration(Number.isFinite(nextDuration) ? nextDuration : 0);
             }}
             onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-            onError={() =>
-              setError(
-                "The audio file could not be loaded. Check that the path in src/data/playlist.ts is correct.",
-              )
-            }
+            onError={() => setError("This track could not be loaded. Try another song.")}
           />
 
           {error ? (
@@ -250,12 +274,15 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
           ) : (
             <p className="player-note">
               <Disc3 size={14} strokeWidth={1.5} aria-hidden="true" />
-              Nothing autoplays. Choose a track when you want one.
+              {hasPlayableTrack
+                ? "Nothing autoplays. Choose a track when you want one."
+                : "Each song is here for a reason. The notes say why."}
             </p>
           )}
         </section>
 
         <section className="track-sheet" aria-labelledby="track-list-heading">
+          <WashiTape className="track-sheet__tape" tone="olive" />
           <div className="track-sheet__head">
             <div>
               <p className="eyebrow">Side A</p>
@@ -277,25 +304,31 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
                     key={track.id}
                     className={cx("track-row", isCurrent && "is-current")}
                   >
-                    <button
-                      type="button"
-                      className="track-row__play"
-                      onClick={() => handleRowClick(track)}
-                      disabled={!playable}
-                      aria-label={
-                        !playable
-                          ? `${track.title || "Track"} has no audio file yet`
-                          : isThisPlaying
+                    {playable ? (
+                      <button
+                        type="button"
+                        className="track-row__play"
+                        onClick={() => handleRowClick(track)}
+                        aria-label={
+                          isThisPlaying
                             ? `Pause ${track.title || "track"}`
                             : `Play ${track.title || "track"}`
-                      }
-                    >
-                      {isThisPlaying ? (
-                        <Pause size={15} fill="currentColor" aria-hidden="true" />
-                      ) : (
-                        <Play size={15} fill="currentColor" aria-hidden="true" />
-                      )}
-                    </button>
+                        }
+                      >
+                        {isThisPlaying ? (
+                          <Pause size={15} fill="currentColor" aria-hidden="true" />
+                        ) : (
+                          <Play size={15} fill="currentColor" aria-hidden="true" />
+                        )}
+                      </button>
+                    ) : (
+                      <span
+                        className="track-row__play track-row__play--static"
+                        aria-hidden="true"
+                      >
+                        <Music2 size={14} strokeWidth={1.6} />
+                      </span>
+                    )}
                     <span className="track-row__number">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -313,9 +346,7 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
                       {track.note ? <span className="track-row__note">{track.note}</span> : null}
                     </span>
                     <span className="track-row__status">
-                      {!playable ? (
-                        <span className="track-row__missing">Audio not added</span>
-                      ) : isCurrent ? (
+                      {playable && isCurrent ? (
                         <span className="track-row__now">
                           {isThisPlaying ? "Playing" : "Selected"}
                         </span>
@@ -342,13 +373,15 @@ export function SoundtrackPage({ chapter }: ChapterPageProps) {
         </section>
       </div>
 
-      <section className="voice-section" aria-labelledby="voice-heading">
-        <div className="voice-section__head">
-          <p className="eyebrow">A second kind of sound</p>
-          <h2 id="voice-heading">A voice note</h2>
-        </div>
-        <VoiceNote voice={soundtrackVoiceMessage} fileHint="src/data/playlist.ts" />
-      </section>
+      {soundtrackVoiceMessage.src ? (
+        <section className="voice-section" aria-labelledby="voice-heading">
+          <div className="voice-section__head">
+            <p className="eyebrow">A second kind of sound</p>
+            <h2 id="voice-heading">A voice note</h2>
+          </div>
+          <VoiceNote voice={soundtrackVoiceMessage} fileHint="src/data/playlist.ts" />
+        </section>
+      ) : null}
     </div>
   );
 }

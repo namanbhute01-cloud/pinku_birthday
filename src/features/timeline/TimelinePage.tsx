@@ -2,6 +2,9 @@ import { PageHeader } from "../../components/PageHeader";
 import { EmptyState } from "../../components/EmptyState";
 import { Placeholder } from "../../components/Placeholder";
 import { ArchiveImage } from "../../components/ArchiveImage";
+import { Sticker } from "../../components/Sticker";
+import { StickerCluster } from "../../components/Decorations";
+import { InkStar } from "../../components/Ornaments";
 import { WashiTape } from "../../components/WashiTape";
 import { timelineEntries } from "../../data/timeline";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
@@ -15,6 +18,17 @@ export function TimelinePage({ chapter }: ChapterPageProps) {
         eyebrow="A life, in order"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="brass" rotate={-5}>
+              the first page
+            </Sticker>
+            <Sticker tone="paper" rotate={3.5}>
+              in order
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       />
 
       {timelineEntries.length === 0 ? (
@@ -66,6 +80,11 @@ export function TimelinePage({ chapter }: ChapterPageProps) {
                   tone={index % 2 === 0 ? "brass" : "olive"}
                   style={{ transform: `rotate(${index % 2 === 0 ? -3 : 2}deg)` }}
                 />
+                {index === 0 ? (
+                  <Sticker className="timeline-card__sticker" tone="olive" rotate={4}>
+                    kept
+                  </Sticker>
+                ) : null}
                 {entry.image ? (
                   <div className="timeline-card__image">
                     <ArchiveImage
@@ -92,6 +111,15 @@ export function TimelinePage({ chapter }: ChapterPageProps) {
           ))}
         </ol>
       )}
+
+      {timelineEntries.length > 0 ? (
+        <div className="timeline-end" aria-hidden="true">
+          <Sticker tone="olive" rotate={-4}>
+            more to come
+          </Sticker>
+          <InkStar />
+        </div>
+      ) : null}
     </div>
   );
 }

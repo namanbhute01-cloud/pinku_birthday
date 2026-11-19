@@ -32,9 +32,9 @@ interface TurnState {
   direction: PageDirection;
 }
 
-/** A real page takes its time: lift, swing past the spine, settle. */
-const FLIP_DURATION = 0.96;
-const FLIP_CLEANUP_MS = 1080;
+/** Deliberate enough to read as paper, quick enough to stay responsive. */
+const FLIP_DURATION = 0.84;
+const FLIP_CLEANUP_MS = 960;
 
 const SHOW_EDGE_CONTROLS = true;
 
@@ -66,7 +66,15 @@ export function PageTurnProvider({ children }: { children: ReactNode }) {
 
   const beginTurn = useCallback(
     (destination: string) => {
-      if (turningRef.current) return;
+      // A second click while the leaf is in flight should still take the
+      // reader where they asked to go, not be swallowed by the animation.
+      if (turningRef.current) {
+        clearCleanupTimer();
+        setTurn(null);
+        turningRef.current = false;
+        navigate(destination);
+        return;
+      }
 
       const url = new URL(destination, window.location.origin);
       const from = getChapterByPath(location.pathname);
@@ -268,8 +276,8 @@ function PageTurnSheet({ turn }: { turn: TurnState }) {
   useEffect(() => {
     const controls = animate(progress, 1, {
       duration: FLIP_DURATION,
-      // Slow lift, quick pass through the spine, gentle settle.
-      ease: [0.42, 0.02, 0.22, 1],
+      // A gentle lift, a steady pass over the spine, a soft landing.
+      ease: [0.32, 0.04, 0.18, 1],
     });
     return () => controls.stop();
   }, [progress]);
@@ -285,25 +293,31 @@ function PageTurnSheet({ turn }: { turn: TurnState }) {
     [0, isForward ? 0.9 : -0.9, isForward ? 0.4 : -0.4, isForward ? 0.2 : -0.2],
   );
   const lift = useTransform(progress, [0, 0.36, 0.7, 1], [0, 24, 46, 0]);
+  const leafFade = useTransform(progress, [0, 0.86, 1], [1, 1, 0]);
 
   const frontShade = useTransform(
     progress,
     [0, 0.22, 0.5, 0.72, 1],
-    [0, 0.14, 0.4, 0.55, 0.55],
+    [0, 0.2, 0.48, 0.62, 0.62],
   );
-  const backShade = useTransform(progress, [0, 0.7, 1], [0.62, 0.3, 0.06]);
-  const wash = useTransform(progress, [0, 0.5, 0.74, 1], [0.62, 0.5, 0.24, 0]);
+  const backShade = useTransform(progress, [0, 0.7, 1], [0.68, 0.36, 0.08]);
+  const wash = useTransform(progress, [0, 0.5, 0.74, 1], [0.89, 0.64, 0.26, 0]);
   const spineShade = useTransform(
     progress,
     [0, 0.45, 0.74, 1],
-    [0.18, 0.5, 0.42, 0.14],
+    [0.22, 0.58, 0.48, 0.16],
   );
   const castPos = useTransform(
     progress,
     [0, 0.74],
     isForward ? ["100%", "0%"] : ["0%", "100%"],
   );
-  const castOpacity = useTransform(progress, [0, 0.18, 0.5, 0.74, 1], [0, 0.4, 0.32, 0.18, 0]);
+  const castOpacity = useTransform(
+    progress,
+    [0, 0.18, 0.5, 0.74, 1],
+    [0, 0.5, 0.42, 0.22, 0],
+  );
+  const backdropOpacity = useTransform(progress, [0, 0.35, 0.7, 1], [0, 0.55, 0.55, 0]);
 
   return (
     <div
@@ -314,33 +328,37 @@ function PageTurnSheet({ turn }: { turn: TurnState }) {
       )}
       aria-hidden="true"
     >
-      {/* The revealed chapter, warmed by the light of the turning leaf. */}
-      <motion.div className="page-turn__wash" style={{ opacity: wash }} />
-      <motion.span
-        className="page-turn__spine-shade"
-        style={{ opacity: spineShade }}
-      />
-      <motion.span
-        className="page-turn__cast"
-        style={{ left: castPos, opacity: castOpacity }}
-      />
+      <motion.div className="page-turn__backdrop" style={{ opacity: backdropOpacity }} />
 
-      <div className="page-turn__deck" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
+      <div className="page-turn__book">
+        {/* The next page, waiting in the light under the turning leaf. */}
+        <motion.div className="page-turn__wash" style={{ opacity: wash }} />
+        <motion.span
+          className="page-turn__spine-shade"
+          style={{ opacity: spineShade }}
+        />
+        <motion.span
+          className="page-turn__cast"
+          style={{ left: castPos, opacity: castOpacity }}
+        />
 
-      <motion.div
-        className="page-turn__sheet"
-        style={{
-          rotateY,
-          rotateZ,
-          z: lift,
-          transformPerspective: 2400,
-          transformOrigin: isForward ? "left center" : "right center",
-        }}
-      >
+        <div className="page-turn__deck" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <motion.div
+          className="page-turn__sheet"
+          style={{
+            rotateY,
+            rotateZ,
+            z: lift,
+            opacity: leafFade,
+            transformPerspective: 2200,
+            transformOrigin: isForward ? "left center" : "right center",
+          }}
+        >
         <div className="page-turn__side page-turn__front">
           <span className="page-turn__ghost-number">{from.number}</span>
 
@@ -403,7 +421,8 @@ function PageTurnSheet({ turn }: { turn: TurnState }) {
             style={{ opacity: backShade }}
           />
         </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }

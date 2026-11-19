@@ -1,0 +1,483 @@
+/* ————————————————————————————————————————————————
+   Scrapbook decorations: stickers, tape, clips and doodles
+   that sit in the margins without touching the reading copy.
+   ———————————————————————————————————————————————— */
+
+/* ——— Shared sticker clusters ——— */
+
+.sticker-cluster {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.42rem 0.5rem;
+  max-width: min(330px, 46vw);
+}
+
+.page-header__decor {
+  position: absolute;
+  top: clamp(38px, 6vw, 76px);
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+
+.page-header__decor .sticker {
+  padding: 0.27rem 0.64rem;
+  font-size: clamp(0.9rem, 1.15vw, 1.04rem);
+}
+
+.page-header__decor .ink-star,
+.decor-star {
+  flex: 0 0 auto;
+  width: 18px;
+  color: var(--brass-deep);
+}
+
+.page-header__decor .doodle {
+  flex: 0 0 auto;
+  width: clamp(26px, 3vw, 36px);
+  color: var(--brass-deep);
+}
+
+/* ——— A wire clip ——— */
+
+.paper-clip {
+  position: absolute;
+  z-index: 6;
+  display: block;
+  width: 13px;
+  height: 34px;
+  border: 1.5px solid rgba(48, 39, 42, 0.38);
+  border-radius: 9px 9px 7px 7px;
+  box-shadow: 1px 2px 4px rgba(48, 39, 42, 0.14);
+  pointer-events: none;
+  transform: rotate(var(--clip-rotate, 0deg));
+}
+
+.paper-clip::before {
+  content: "";
+  position: absolute;
+  inset: 4px 3px 9px;
+  border: 1px solid rgba(48, 39, 42, 0.24);
+  border-radius: 6px 6px 4px 4px;
+}
+
+.paper-clip::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 3px;
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ——— Hand-drawn marginalia ——— */
+
+.doodle {
+  display: block;
+  pointer-events: none;
+}
+
+.heart-doodle {
+  color: var(--burgundy);
+}
+
+.arrow-doodle {
+  color: var(--brass-deep);
+}
+
+.spark-doodle {
+  color: var(--brass-deep);
+}
+
+/* ——— Cover & contents ——— */
+
+.contents__clip {
+  top: -17px;
+  right: 19%;
+  z-index: 6;
+}
+
+.contents__sticker {
+  position: absolute;
+  top: 17px;
+  right: clamp(22px, 4vw, 46px);
+  z-index: 5;
+}
+
+.cover-collage__sticker--right {
+  right: 2%;
+  bottom: 82px;
+  left: auto;
+}
+
+.cover-dedication__heart {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1rem;
+  width: 20px;
+  color: var(--burgundy);
+  opacity: 0.8;
+  transform: rotate(8deg);
+}
+
+/* ——— Timeline ——— */
+
+.timeline-card__sticker {
+  position: absolute;
+  top: 16px;
+  right: -15px;
+  z-index: 4;
+}
+
+.timeline-end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 6px 0 0;
+}
+
+.timeline-end .sticker {
+  font-size: 0.95rem;
+}
+
+.timeline-end .ink-star {
+  width: 16px;
+  color: var(--brass-deep);
+}
+
+/* ——— Chaos ——— */
+
+.quote-grid {
+  position: relative;
+}
+
+.quote-grid__tape {
+  top: -13px;
+  left: 26%;
+  z-index: 6;
+  width: 94px;
+  transform: rotate(-4deg);
+}
+
+.quote-grid__sticker {
+  position: absolute;
+  top: -17px;
+  right: 0;
+  z-index: 6;
+  font-size: 0.92rem;
+}
+
+/* ——— Polaroid wall ——— */
+
+.gallery-toolbar {
+  position: relative;
+}
+
+.gallery-toolbar__clip {
+  top: -17px;
+  left: 12px;
+}
+
+.gallery-wall__note {
+  position: absolute;
+  top: 12px;
+  right: 9%;
+  z-index: 4;
+  color: var(--burgundy);
+  font-family: var(--font-hand);
+  font-size: 1.18rem;
+  line-height: 1;
+  transform: rotate(4deg);
+  pointer-events: none;
+}
+
+.polaroid-wall {
+  position: relative;
+}
+
+.polaroid-wall__sticker {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  z-index: 4;
+  font-size: 0.9rem;
+}
+
+/* ——— Constellation ——— */
+
+.star-map__compass {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(222, 200, 164, 0.28);
+  border-radius: 50%;
+  color: rgba(248, 241, 230, 0.62);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.star-map__compass::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(180deg, var(--brass-light), transparent 78%);
+  opacity: 0.7;
+  transform: rotate(24deg);
+}
+
+/* ——— Little things ——— */
+
+.decor-botanical {
+  width: clamp(52px, 5.5vw, 76px);
+  opacity: 0.42;
+  transform: rotate(9deg);
+}
+
+.note-stack__end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 8px;
+}
+
+.note-stack__end .sticker {
+  font-size: 0.92rem;
+}
+
+.note-stack__end .ink-star {
+  width: 17px;
+  color: var(--brass-deep);
+}
+
+/* ——— Soundtrack ——— */
+
+.track-sheet {
+  position: relative;
+}
+
+.track-sheet__tape {
+  top: -12px;
+  left: 38%;
+  width: 96px;
+  transform: rotate(-3deg);
+}
+
+.turntable-card__sticker {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  padding: 0.24rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+/* ——— Open when ——— */
+
+.letters-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+  color: var(--burgundy);
+  font-family: var(--font-hand);
+  font-size: 1.22rem;
+  text-align: center;
+  transform: rotate(-1deg);
+}
+
+.letters-footnote__arrow {
+  width: 30px;
+  transform: rotate(6deg);
+}
+
+.letter-envelope__sticker {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
+  padding: 0.24rem 0.55rem;
+  font-size: 0.88rem;
+  pointer-events: none;
+}
+
+/* ——— To be continued ——— */
+
+.future-collage__sticker {
+  position: absolute;
+  bottom: 8px;
+  left: 4%;
+  z-index: 5;
+}
+
+.future-postcard__sticker {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 3;
+  padding: 0.24rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+.future-map__clip {
+  top: -13px;
+  right: 12px;
+}
+
+.future-content__heart {
+  display: inline-block;
+  width: 19px;
+  margin-left: 0.35rem;
+  color: var(--burgundy);
+  opacity: 0.75;
+  transform: rotate(7deg);
+  vertical-align: -3px;
+}
+
+/* ——— Final letter ——— */
+
+.final-letter__tape {
+  top: -12px;
+  left: 28px;
+  width: 92px;
+  transform: rotate(-5deg);
+}
+
+.final-letter__sticker {
+  position: absolute;
+  top: 18px;
+  right: 12px;
+  z-index: 4;
+}
+
+.final-letter__heart {
+  width: 20px;
+  margin: 0.5rem 0 0 auto;
+  opacity: 0.8;
+  transform: rotate(8deg);
+}
+
+/* ——— Responsive handling ——— */
+
+@media (max-width: 1100px) {
+  /* The dedication note narrows here and would run under this sticker. */
+  .cover-collage__sticker--right {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .page-header__decor {
+    top: clamp(34px, 5vw, 56px);
+  }
+
+  .sticker-cluster {
+    max-width: min(290px, 48vw);
+  }
+}
+
+@media (max-width: 700px) {
+  .page-header__decor {
+    position: static;
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+
+  .sticker-cluster {
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page-header__decor .sticker {
+    font-size: 0.92rem;
+  }
+
+  .contents__sticker,
+  .gallery-wall__note {
+    display: none;
+  }
+
+  .contents__clip {
+    right: 12%;
+  }
+
+  .timeline-card__sticker {
+    top: 10px;
+    right: 4px;
+  }
+
+  .quote-grid__tape {
+    left: 18%;
+    width: 78px;
+  }
+
+  .quote-grid__sticker {
+    top: -12px;
+    right: 4px;
+    font-size: 0.82rem;
+  }
+
+  .polaroid-wall__sticker {
+    top: -2px;
+    left: 0;
+    font-size: 0.82rem;
+  }
+
+  .letter-envelope__sticker {
+    top: 8px;
+    right: 8px;
+    font-size: 0.82rem;
+  }
+
+  .future-postcard__sticker {
+    top: 8px;
+    left: 10px;
+    font-size: 0.82rem;
+  }
+
+  .gallery-toolbar__clip {
+    display: none;
+  }
+
+  .final-letter__sticker {
+    top: 12px;
+    right: 10px;
+  }
+
+  .final-letter__tape {
+    left: 18px;
+    width: 78px;
+  }
+
+  .future-collage__sticker {
+    bottom: 2px;
+    left: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-header__decor .sticker:nth-of-type(2) {
+    display: none;
+  }
+
+  .final-letter__sticker {
+    display: none;
+  }
+}

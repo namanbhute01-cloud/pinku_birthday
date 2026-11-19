@@ -7,6 +7,13 @@ import { Envelope } from "../../components/Envelope";
 import { Confetti } from "../../components/Confetti";
 import { Placeholder } from "../../components/Placeholder";
 import { VoiceNote } from "../../components/VoiceNote";
+import {
+  HeartDoodle,
+  StickerCluster,
+} from "../../components/Decorations";
+import { Sticker } from "../../components/Sticker";
+import { InkStar } from "../../components/Ornaments";
+import { WashiTape } from "../../components/WashiTape";
 import { finalLetter } from "../../data/finale";
 import { profile } from "../../data/profile";
 import type { ChapterPageProps } from "../../app/ChapterRoute";
@@ -56,6 +63,17 @@ export function FinalePage({ chapter }: ChapterPageProps) {
         eyebrow="Save this one for last"
         title={chapter.title}
         deck={chapter.deck}
+        decor={
+          <StickerCluster>
+            <Sticker tone="burgundy" rotate={-5}>
+              the last page
+            </Sticker>
+            <Sticker tone="paper" rotate={3}>
+              with love
+            </Sticker>
+            <InkStar />
+          </StickerCluster>
+        }
       />
 
       <section className="finale-stage" aria-live="polite">
@@ -100,6 +118,10 @@ export function FinalePage({ chapter }: ChapterPageProps) {
               }}
             >
               <span className="final-letter__pin" aria-hidden="true" />
+              <WashiTape className="final-letter__tape" tone="brass" />
+              <Sticker className="final-letter__sticker" tone="olive" rotate={5}>
+                keep this
+              </Sticker>
               <p className="eyebrow">The last page</p>
               <h2 id="final-letter-title">
                 {finalLetter.title ? (
@@ -127,6 +149,7 @@ export function FinalePage({ chapter }: ChapterPageProps) {
                   <Placeholder>Your sign-off will go here.</Placeholder>
                 )}
               </p>
+              <HeartDoodle className="final-letter__heart" />
 
               <div className="finale-actions">
                 {!celebrated ? (
@@ -145,7 +168,9 @@ export function FinalePage({ chapter }: ChapterPageProps) {
                 </Link>
               </div>
 
-              <VoiceNote voice={voice} fileHint="src/data/finale.ts" />
+              {finalLetter.voiceSrc ? (
+                <VoiceNote voice={voice} fileHint="src/data/finale.ts" />
+              ) : null}
             </motion.article>
 
             {celebrated ? (
