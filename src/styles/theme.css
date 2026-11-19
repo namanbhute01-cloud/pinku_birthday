@@ -1,0 +1,65 @@
+/* ————————————————————————————————————————————————
+   The Birthday Archive — design tokens
+   A warm paper archive with burgundy, olive and aged brass.
+   ———————————————————————————————————————————————— */
+
+:root {
+  /* Paper & ink */
+  --paper: #f0e5d2;
+  --paper-light: #f8f1e6;
+  --paper-warm: #eadbc3;
+  --paper-deep: #ddc9aa;
+  --paper-shadow: #cbb797;
+  --ink: #30272a;
+  --ink-soft: #5d4f4d;
+  --ink-faint: #73635c;
+
+  /* Accents */
+  --burgundy: #813f48;
+  --burgundy-deep: #5d2c34;
+  --burgundy-light: #a4625f;
+  --burgundy-wash: #ead8d5;
+  --olive: #7a8066;
+  --olive-deep: #59604a;
+  --olive-wash: #e3e4d8;
+  --brass: #b99561;
+  --brass-deep: #8c6a3f;
+  --brass-ink: #7b5a32;
+  --brass-light: #dec8a4;
+
+  /* Night */
+  --night: #1b222b;
+  --night-soft: #232d38;
+  --night-lift: #303d4a;
+
+  /* Lines & shadows */
+  --rule: rgba(48, 39, 42, 0.16);
+  --rule-strong: rgba(48, 39, 42, 0.28);
+  --rule-light: rgba(248, 241, 230, 0.18);
+  --shadow-paper: 0 2px 2px rgba(48, 39, 42, 0.06), 0 18px 40px rgba(48, 39, 42, 0.11);
+  --shadow-lift: 0 4px 8px rgba(48, 39, 42, 0.08), 0 26px 60px rgba(48, 39, 42, 0.17);
+  --shadow-photo: 0 2px 3px rgba(48, 39, 42, 0.16), 0 14px 26px rgba(48, 39, 42, 0.16);
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype",
+    Palatino, Georgia, serif;
+  --font-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Caveat", "Bradley Hand", "Segoe Script", cursive;
+  --font-mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
+
+  /* Geometry */
+  --content-width: 1180px;
+  --header-height: 74px;
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-paper: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* A tiny, lightweight paper grain. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  --grain-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 700px) {
+  :root {
+    --header-height: 64px;
+  }
+}

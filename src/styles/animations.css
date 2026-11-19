@@ -1,0 +1,87 @@
+/* ————————————————————————————————————————————————
+   The Birthday Archive — motion
+   Shared keyframes and reduced-motion safeguards.
+   ———————————————————————————————————————————————— */
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+  }
+  8% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 0px), 108vh, 0) rotate(var(--spin, 540deg));
+  }
+}
+
+@keyframes vinyl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes seal-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(129, 63, 72, 0.28);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(129, 63, 72, 0);
+  }
+}
+
+@keyframes dust-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(3px, -5px, 0);
+  }
+}
+
+/* Decorative moth/star flecks, if a page opts in. */
+.ornament-float {
+  animation: dust-drift 9s ease-in-out infinite;
+}
+
+/* The wax seal on the invitation gets a soft, slow pulse. */
+.seal-pulse {
+  animation: seal-breathe 3.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .confetti,
+  .ornament-float,
+  .seal-pulse {
+    display: none !important;
+  }
+
+  .vinyl {
+    animation: none !important;
+  }
+
+  /* Framer Motion is also configured to skip its own transitions, but
+     these catch CSS-only flourishes such as envelope arrivals. */
+  .envelope,
+  .envelope__flap,
+  .envelope__letter,
+  .polaroid,
+  .paper-sheet {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
